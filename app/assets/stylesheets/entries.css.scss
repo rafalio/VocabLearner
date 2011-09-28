@@ -6,7 +6,11 @@
 table#words{
 
   tr td.entry{
-    width: 50%;
+    width: 35%;
+  }
+
+  tr td#actions{
+    width: 15%;
   }
 
 }

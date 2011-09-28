@@ -6,6 +6,8 @@
     <th>Word</th>
     <th>Added on</th>
     <th>Last Reviewed on:</th>
+    <th>'Yes' Reviews</th>
+    <th>'No' Reviews</th>
     <th>Actions</th>
   </tr>
 
@@ -25,7 +27,10 @@
       asdf
     </td>
 
-    <td>
+    <td> <%= entry.yes %> </td>
+    <td> <%= entry.no %> </td>
+
+    <td id="actions">
       <%= link_to 'Edit', edit_entry_path(entry), class: "btn info small" %>
       <%= link_to 'Delete', entry, class: "btn danger small", confirm: 'Are you sure?', method: :delete %>
     </td>
