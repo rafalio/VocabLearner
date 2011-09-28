@@ -19,9 +19,9 @@ ActiveRecord::Schema.define(:version => 20110928133635) do
     t.text     "definition"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.decimal  "score",      :default => 1.0, :null => false
-    t.integer  "yes",        :default => 0
-    t.integer  "no",         :default => 0
+    t.decimal  "score",      :precision => 10, :scale => 0, :default => 1, :null => false
+    t.integer  "yes",                                       :default => 0
+    t.integer  "no",                                        :default => 0
   end
 
   create_table "users", :force => true do |t|
