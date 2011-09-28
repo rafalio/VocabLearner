@@ -2,7 +2,7 @@ class EntriesController < ApplicationController
   # GET /entries
   # GET /entries.json
   def index
-    @entries = Entry.all
+    @entries = current_user.entries
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,11 +13,16 @@ class EntriesController < ApplicationController
   # GET /entries/1
   # GET /entries/1.json
   def show
-    @entry = Entry.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @entry }
+    begin
+      @entry = current_user.entries.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      logger.error "Attempt by user #{current_user} to access invalid entry #{params[:id]}"
+      redirect_to entries_url, notice: "Invalid ID"
+    else
+      respond_to do |format|
+        format.html # show.html.erb
+        format.json { render json: @entry }
+      end
     end
   end
 
@@ -34,7 +39,12 @@ class EntriesController < ApplicationController
 
   # GET /entries/1/edit
   def edit
-    @entry = Entry.find(params[:id])
+    begin
+      @entry = current_user.entries.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      logger.error "Attempt by user #{current_user} to edit invalid entry #{params[:id]}"
+      redirect_to entries_url, notice: "Invalid ID"
+    end
   end
 
   # POST /entries
@@ -57,28 +67,40 @@ class EntriesController < ApplicationController
   # PUT /entries/1
   # PUT /entries/1.json
   def update
-    @entry = Entry.find(params[:id])
 
-    respond_to do |format|
-      if @entry.update_attributes(params[:entry])
-        format.html { redirect_to @entry, notice: 'Entry was successfully updated.' }
-        format.json { head :ok }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @entry.errors, status: :unprocessable_entity }
+    begin
+      @entry = current_user.entries.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      logger.error "Attempt by user #{current_user} to update invalid entry #{params[:id]}"
+      redirect_to entries_url, notice: "Invalid ID"
+    else
+      respond_to do |format|
+        if @entry.update_attributes(params[:entry])
+          format.html { redirect_to @entry, notice: 'Entry was successfully updated.' }
+          format.json { head :ok }
+        else
+          format.html { render action: "edit" }
+          format.json { render json: @entry.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
 
+
   # DELETE /entries/1
   # DELETE /entries/1.json
   def destroy
-    @entry = Entry.find(params[:id])
-    @entry.destroy
-
-    respond_to do |format|
-      format.html { redirect_to entries_url }
-      format.json { head :ok }
+    begin
+      @entry = current_user.entries.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      logger.error "Attempt by user #{current_user} to delete invalid entry #{params[:id]}"
+      redirect_to entries_url, notice: "Invalid ID"
+    else
+      @entry.destroy
+      respond_to do |format|
+        format.html { redirect_to entries_url }
+        format.json { head :ok }
+      end
     end
   end
 end

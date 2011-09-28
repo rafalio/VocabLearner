@@ -1,12 +1,14 @@
 Words::Application.routes.draw do
   resources :entries
 
-  get "words/index"
-
   root :to => "words#index"
 
   match "/auth/twitter/callback" => "sessions#create"
   match "/signout" => "sessions#destroy", as: :signout
+
+
+  match "/learn" => "learn#index", as: :learn
+  match "/random" => "learn#random", as: :random
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
