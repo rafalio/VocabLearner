@@ -14,6 +14,7 @@ end
 
 group :production do
   gem 'mysql2'
+  gem 'therubyracer-heroku', '0.8.1.pre3' # for heroku
 end
 
 
