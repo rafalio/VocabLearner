@@ -1,6 +1,31 @@
-<h1>Learn#random</h1>
-<p>Find me in app/views/learn/random.html.erb</p>
+<div class="row">
+  <div class="span14">
+
+    <div id="learn">
+
+      <h3>Do you know what this means? </h3> 
+      <h1><%= @entry.name.upcase %> </h1>
 
 
-<%= @entries.name %>
+      <div id="learn_response">
+        <%= form_tag yes_path, :method => 'post' do %>
+          <%= hidden_field_tag 'id', @entry.id %>
+          <%= submit_tag "Yes!", class: "btn large success" %>
+        <% end %>
+
+        <%= form_tag no_path, :method => 'post', remote: true do %>
+          <%= hidden_field_tag 'id', @entry.id %>
+          <%= submit_tag "No...", class: "btn large danger", id: :no %>
+        <% end %>
+      </div>
+
+      <div id="definition" style="display: none">
+        <h3><%= @entry.definition %></h3>
+        <%= link_to 'Another Word!', random_path, class: "btn large" %> 
+      </div>
+
+    </div>
+
+  </div>
+</div>
 

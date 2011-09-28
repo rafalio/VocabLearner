@@ -10,6 +10,9 @@ Words::Application.routes.draw do
   match "/learn" => "learn#index", as: :learn
   match "/random" => "learn#random", as: :random
 
+  match "learn/yes" => "learn#yes", via: :post, as: :yes
+  match "learn/no" => "learn#no", via: :post, as: :no
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

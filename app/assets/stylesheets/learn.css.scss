@@ -1,3 +1,19 @@
 // Place all the styles related to the Learn controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+div#learn{
+  margin: 0 auto;
+  width: 450px;
+  text-align:center;
+  height: 200px;
+  margin-top: 50px;
+
+}
+
+div#learn_response{
+  form{
+    display: inline;
+  }
+
+}

@@ -5,19 +5,24 @@
   <tr>
     <th>Word</th>
     <th>Added on</th>
+    <th>Last Reviewed on:</th>
     <th>Actions</th>
   </tr>
 
 <% @entries.each do |entry| %>
   <tr>
     <td class="entry">
-      <a href="#" rel="popover" data-content="<%= entry.definition %>" data-original-title="<%= entry.name%>">
+      <a href="/entries/<%= entry.id %>" rel="popover" data-content="<%= entry.definition %>" data-original-title="<%= entry.name%>">
         <h5><%= entry.name %></h5>
       </a>
     </td>
 
     <td>
-      <%= entry.created_at %>
+      <%= entry.created_at.strftime("%d/%m/%Y") %>
+    </td>
+
+    <td>
+      asdf
     </td>
 
     <td>

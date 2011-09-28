@@ -1,14 +1,12 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Name:</b>
-  <%= @entry.name %>
-</p>
 
-<p>
-  <b>Definition:</b>
-  <%= @entry.definition %>
-</p>
+<h3><%= @entry.name %></h3>
+
+
+<blockquote>
+<p><%= @entry.definition %></p>
+</blockquote>
 
 
 <%= link_to 'Edit', edit_entry_path(@entry) %> |
