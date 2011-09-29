@@ -5,7 +5,7 @@
 
 
 <blockquote>
-<p><%= @entry.definition %></p>
+  <%=raw sanitize(simple_format(@entry.definition), :tags => %w(br p) ) %>
 </blockquote>
 
 

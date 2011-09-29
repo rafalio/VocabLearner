@@ -5,7 +5,7 @@
   <tr>
     <th>Word</th>
     <th>Added on</th>
-    <th>Last Reviewed on:</th>
+    <th>Last Review:</th>
     <th>'Yes' Reviews</th>
     <th>'No' Reviews</th>
     <th>Actions</th>
@@ -24,7 +24,7 @@
     </td>
 
     <td>
-      asdf
+      <%= entry.lastupdated ? entry.lastupdated.strftime("%d/%m/%Y") : "Never!" %>
     </td>
 
     <td> <%= entry.yes %> </td>

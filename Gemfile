@@ -7,6 +7,7 @@ gem 'rails', '3.1.0'
 
 gem 'omniauth'
 gem 'coffeebeans'
+gem 'wordnik'
 
 group :development do
   gem 'sqlite3'

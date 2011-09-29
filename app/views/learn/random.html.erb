@@ -20,7 +20,7 @@
       </div>
 
       <div id="definition" style="display: none">
-        <h3><%= @entry.definition %></h3>
+        <%=raw sanitize(simple_format(@entry.definition), :tags => %w(br p) ) %>
         <%= link_to 'Another Word!', random_path, class: "btn large" %> 
       </div>
 

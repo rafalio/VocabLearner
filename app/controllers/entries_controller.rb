@@ -103,4 +103,18 @@ class EntriesController < ApplicationController
       end
     end
   end
+
+  def getDefinition
+    if params[:word]
+      defn = Wordnik.word.get_definitions(params[:word], :useCanonical => 'true').map { |f| f["text"] }
+      if defn.size != 0
+        render json: defn
+      else
+        render json: false
+      end
+    else
+      render json: false
+    end
+  end
+
 end

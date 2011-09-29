@@ -4,6 +4,13 @@ class LearnController < ApplicationController
 
   def random
     @entry = current_user.entries.find(:all, order: "RANDOM()").first
+
+    if not @entry
+      redirect_to entries_url, notice: "You must first add some words!"
+    end
+    @entry.lastupdated = Time.now
+    @entry.save
+
   end
 
   def yes

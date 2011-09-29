@@ -13,6 +13,8 @@ Words::Application.routes.draw do
   match "learn/yes" => "learn#yes", via: :post, as: :yes
   match "learn/no" => "learn#no", via: :post, as: :no
 
+  match "getDefinition" => "entries#getDefinition"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

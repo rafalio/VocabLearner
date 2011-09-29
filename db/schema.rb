@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110928133635) do
+ActiveRecord::Schema.define(:version => 20110929125625) do
 
   create_table "entries", :force => true do |t|
     t.integer  "user_id"
@@ -19,9 +19,10 @@ ActiveRecord::Schema.define(:version => 20110928133635) do
     t.text     "definition"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.decimal  "score",      :precision => 10, :scale => 0, :default => 1, :null => false
-    t.integer  "yes",                                       :default => 0
-    t.integer  "no",                                        :default => 0
+    t.decimal  "score",       :default => 1.0, :null => false
+    t.integer  "yes",         :default => 0
+    t.integer  "no",          :default => 0
+    t.date     "lastupdated"
   end
 
   create_table "users", :force => true do |t|
