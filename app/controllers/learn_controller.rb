@@ -7,7 +7,9 @@ class LearnController < ApplicationController
 
     if not @entry
       redirect_to entries_url, notice: "You must first add some words!"
+      return
     end
+
     @entry.lastupdated = Time.now
     @entry.save
 
